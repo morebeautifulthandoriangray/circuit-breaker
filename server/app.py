@@ -2,6 +2,7 @@ from flask import Flask
 import random
 import time
 
+
 app = Flask(__name__)
 
 data = ["apple", "pineapple"]
@@ -9,22 +10,16 @@ data = ["apple", "pineapple"]
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return 'HEEEEEYYEYEYEYEY'
 
-
-@app.route('/data')
-def data_data():
-    return data, 200
-
-
-@app.route('/fail')
+@app.route('/fault')
 def faulty_endpoint():
     r = random.randint(0, 1)
     if r == 0:
         time.sleep(5)
 
     return {
-        "msg": "I will fail."
+        "msg": "I've failed."
     }, 500
 
 
@@ -32,9 +27,7 @@ def faulty_endpoint():
 def fail_randomly_endpoint():
     r = random.randint(0, 1)
     if r == 0:
-        return {
-            "msg": "Success msg"
-        }, 200
+        return data, 200
 
     return {
         "msg": "I will fail (sometimes)."
@@ -42,5 +35,4 @@ def fail_randomly_endpoint():
 
 
 if __name__ == '__main__':
-
-    app.run(port=5000)
+    app.run()
